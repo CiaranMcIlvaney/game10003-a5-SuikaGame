@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://mko6qtcblemt"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_4sy4k"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="2_jji5e"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_klut6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xq1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfpf1"]
+size = Vector2(100, 100)
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+visible = false
+position = Vector2(574.927, 326.31)
+script = ExtResource("3_klut6")
+size = Vector2(1151.85, 648.619)
+corner_radius = 0.0
+fill_color = Color(0, 0.583826, 0.584612, 1)
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(570, 113)
+scale = Vector2(2.005, 2.005)
+script = ExtResource("1_4sy4k")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Player"]
+position = Vector2(-66.3342, -20.9476)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RigidBody2D"]
+shape = SubResource("CircleShape2D_4xq1i")
+metadata/_edit_lock_ = true
+
+[node name="Ellipse" type="Node2D" parent="Player/RigidBody2D"]
+script = ExtResource("2_jji5e")
+size = Vector2(20, 20)
+metadata/_edit_lock_ = true
+
+[node name="Bowl" type="Node2D" parent="."]
+
+[node name="Bottom" type="StaticBody2D" parent="Bowl"]
+position = Vector2(528, 526)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bowl/Bottom"]
+position = Vector2(84, -42)
+scale = Vector2(0.295, 5.42)
+shape = SubResource("RectangleShape2D_hfpf1")
+
+[node name="Rectangle" type="Node2D" parent="Bowl/Bottom"]
+position = Vector2(84, -44)
+scale = Vector2(0.295, 5.42)
+script = ExtResource("3_klut6")
+corner_radius = 0.0
+fill_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="RightSide" type="StaticBody2D" parent="Bowl"]
+position = Vector2(768, 387)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bowl/RightSide"]
+position = Vector2(84, 11)
+scale = Vector2(0.295, 4.58)
+shape = SubResource("RectangleShape2D_hfpf1")
+
+[node name="Rectangle" type="Node2D" parent="Bowl/RightSide"]
+position = Vector2(84, 9)
+scale = Vector2(0.295, 4.58)
+script = ExtResource("3_klut6")
+corner_radius = 0.0
+fill_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="LeftSide" type="StaticBody2D" parent="Bowl"]
+position = Vector2(220, 387)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bowl/LeftSide"]
+position = Vector2(84, 11)
+scale = Vector2(0.295, 4.58)
+shape = SubResource("RectangleShape2D_hfpf1")
+
+[node name="Rectangle" type="Node2D" parent="Bowl/LeftSide"]
+position = Vector2(84, 9)
+scale = Vector2(0.295, 4.58)
+script = ExtResource("3_klut6")
+corner_radius = 0.0
+fill_color = Color(0.255659, 0.255659, 0.255659, 1)
