@@ -1,8 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://mko6qtcblemt"]
+[gd_scene load_steps=17 format=3 uid="uid://mko6qtcblemt"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_4sy4k"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="2_jji5e"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_klut6"]
+[ext_resource type="PackedScene" uid="uid://b12dd5pxu1nki" path="res://Scenes/Cherry.tscn" id="4_cxxe4"]
+[ext_resource type="PackedScene" uid="uid://car53skni4gs8" path="res://Scenes/Strawberry.tscn" id="4_ms1t6"]
+[ext_resource type="PackedScene" uid="uid://dk023c5vsdumf" path="res://Scenes/Grapes.tscn" id="5_ptm48"]
+[ext_resource type="PackedScene" uid="uid://dh5jd17sedwfv" path="res://Scenes/Dekopon.tscn" id="6_fxymd"]
+[ext_resource type="PackedScene" uid="uid://cysbprfv7bauy" path="res://Scenes/Persimmon.tscn" id="7_f1twh"]
+[ext_resource type="PackedScene" uid="uid://dbgcn8ihslddh" path="res://Scenes/Apple.tscn" id="8_2qqfi"]
+[ext_resource type="PackedScene" uid="uid://b7eq1es65by2k" path="res://Scenes/Pear.tscn" id="9_b5p8o"]
+[ext_resource type="PackedScene" uid="uid://dof41n26gg1t4" path="res://Scenes/Peach.tscn" id="10_pp7xj"]
+[ext_resource type="PackedScene" uid="uid://hlj5xf1nou62" path="res://Scenes/Pineapple.tscn" id="11_7k2ql"]
+[ext_resource type="PackedScene" uid="uid://b2nj6cinntn8b" path="res://Scenes/Melon.tscn" id="12_tmxpq"]
+[ext_resource type="PackedScene" uid="uid://hn7khjl8lvr5" path="res://Scenes/TitularWatermelon.tscn" id="13_2xwvr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4xq1i"]
 
@@ -20,19 +31,29 @@ corner_radius = 0.0
 fill_color = Color(0, 0.583826, 0.584612, 1)
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(570, 113)
+position = Vector2(438, 71)
 scale = Vector2(2.005, 2.005)
 script = ExtResource("1_4sy4k")
+Cherry = ExtResource("4_cxxe4")
+Strawberry = ExtResource("4_ms1t6")
+Grape = ExtResource("5_ptm48")
+Dekopon = ExtResource("6_fxymd")
+Persimmon = ExtResource("7_f1twh")
+Apple = ExtResource("8_2qqfi")
+Pear = ExtResource("9_b5p8o")
+Peach = ExtResource("10_pp7xj")
+Pineapple = ExtResource("11_7k2ql")
+Melon = ExtResource("12_tmxpq")
+TitularWatermelon = ExtResource("13_2xwvr")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Player"]
-position = Vector2(-66.3342, -20.9476)
-gravity_scale = 0.0
+[node name="StaticBody2D" type="StaticBody2D" parent="Player"]
+position = Vector2(2.99252, -0.997506)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/StaticBody2D"]
 shape = SubResource("CircleShape2D_4xq1i")
 metadata/_edit_lock_ = true
 
-[node name="Ellipse" type="Node2D" parent="Player/RigidBody2D"]
+[node name="Ellipse" type="Node2D" parent="Player/StaticBody2D"]
 script = ExtResource("2_jji5e")
 size = Vector2(20, 20)
 metadata/_edit_lock_ = true

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dof41n26gg1t4"]
+
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_vrpbo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5j301"]
+
+[node name="Peach" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7.25, 7.25)
+shape = SubResource("CircleShape2D_5j301")
+
+[node name="Ellipse" type="Node2D" parent="."]
+scale = Vector2(7.25, 7.25)
+script = ExtResource("1_vrpbo")
+size = Vector2(20, 20)
+fill_color = Color(0.992681, 0.612981, 0.542718, 1)
