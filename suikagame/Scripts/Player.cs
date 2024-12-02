@@ -33,6 +33,9 @@ public partial class Player : Node2D
     [Export]
     private PackedScene TitularWatermelon;
 
+    [Export]
+    private Node2D FruitParent;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -58,38 +61,38 @@ public partial class Player : Node2D
         if (Input.IsActionJustPressed("drop"))
         {
             Node2D cherry = Cherry.Instantiate<Node2D>();
-            this.AddChild(cherry);
-
-            Node2D strawberry = Strawberry.Instantiate<Node2D>();
-            this.AddChild(strawberry);
-
-            Node2D grape = Grape.Instantiate<Node2D>();
-            this.AddChild(grape);
-
-            Node2D dekopon = Dekopon.Instantiate<Node2D>();
-            this.AddChild(dekopon);
-
-            Node2D persimmon = Persimmon.Instantiate<Node2D>();
-            this.AddChild(persimmon);
-
-            Node2D apple = Apple.Instantiate<Node2D>();
-            this.AddChild(apple);
-
-            Node2D pear = Pear.Instantiate<Node2D>();
-            this.AddChild(pear);
-
-            Node2D peach = Peach.Instantiate<Node2D>();
-            this.AddChild(peach);
-
-            Node2D pineapple = Pineapple.Instantiate<Node2D>();
-            this.AddChild(pineapple);
-
-            Node2D melon = Melon.Instantiate<Node2D>();
-            this.AddChild(melon);
-
-            Node2D titularWatermelon = TitularWatermelon.Instantiate<Node2D>();
-            this.AddChild(titularWatermelon);
+            FruitParent.AddChild(cherry);
+            cherry.GlobalPosition = this.GlobalPosition;
         }
 
     }
 }
+            //Node2D strawberry = Strawberry.Instantiate<Node2D>();
+            //this.AddChild(strawberry);
+
+            //Node2D grape = Grape.Instantiate<Node2D>();
+            //this.AddChild(grape);
+
+            //Node2D dekopon = Dekopon.Instantiate<Node2D>();
+            //this.AddChild(dekopon);
+
+            //Node2D persimmon = Persimmon.Instantiate<Node2D>();
+            //this.AddChild(persimmon);
+
+            //Node2D apple = Apple.Instantiate<Node2D>();
+            //this.AddChild(apple);
+
+            //Node2D pear = Pear.Instantiate<Node2D>();
+            //this.AddChild(pear);
+
+            //Node2D peach = Peach.Instantiate<Node2D>();
+            //this.AddChild(peach);
+
+            //Node2D pineapple = Pineapple.Instantiate<Node2D>();
+            //this.AddChild(pineapple);
+
+            //Node2D melon = Melon.Instantiate<Node2D>();
+            //this.AddChild(melon);
+
+            //Node2D titularWatermelon = TitularWatermelon.Instantiate<Node2D>();
+            //this.AddChild(titularWatermelon);

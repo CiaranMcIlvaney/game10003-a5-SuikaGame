@@ -58,3 +58,7 @@ func draw_handles(overlay: Control) -> Array:
 		handles[i].draw(overlay)
 	
 	return handles
+
+
+func OnBodyEntered(body: Node) -> void:
+	pass # Replace with function body.

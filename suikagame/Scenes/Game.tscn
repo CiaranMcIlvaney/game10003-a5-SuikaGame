@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mko6qtcblemt"]
+[gd_scene load_steps=17 format=3 uid="uid://cvhn24u23xlbd"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_4sy4k"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="2_jji5e"]
@@ -30,8 +30,8 @@ size = Vector2(1151.85, 648.619)
 corner_radius = 0.0
 fill_color = Color(0, 0.583826, 0.584612, 1)
 
-[node name="Player" type="Node2D" parent="."]
-position = Vector2(438, 71)
+[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("FruitParent")]
+position = Vector2(369, 76)
 scale = Vector2(2.005, 2.005)
 script = ExtResource("1_4sy4k")
 Cherry = ExtResource("4_cxxe4")
@@ -45,6 +45,7 @@ Peach = ExtResource("10_pp7xj")
 Pineapple = ExtResource("11_7k2ql")
 Melon = ExtResource("12_tmxpq")
 TitularWatermelon = ExtResource("13_2xwvr")
+FruitParent = NodePath("../Fruit Parent")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Player"]
 position = Vector2(2.99252, -0.997506)
@@ -105,3 +106,5 @@ scale = Vector2(0.295, 4.58)
 script = ExtResource("3_klut6")
 corner_radius = 0.0
 fill_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="Fruit Parent" type="Node2D" parent="."]
