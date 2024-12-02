@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://brnisnaqpo2rh"]
+
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="2_qvhpc"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_ybkli"]
+script/source = "using Godot;
+using System;
+
+public partial class Temptest : Area2D
+{
+	private void OnBodyEntered(Node2D node)
+	{
+		GD.Print(\"TEST\");
+	}
+}
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gab33"]
+
+[node name="Area2D" type="Area2D"]
+gravity_space_override = 4
+gravity_point_center = Vector2(0, 1.835)
+gravity_direction = Vector2(0, 1.835)
+script = SubResource("CSharpScript_ybkli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.09, 1.09)
+shape = SubResource("CircleShape2D_gab33")
+
+[node name="Ellipse" type="Node2D" parent="."]
+script = ExtResource("2_qvhpc")
+size = Vector2(20, 20)
+fill_color = Color(0.704282, 0.078495, 0.269175, 1)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

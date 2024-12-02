@@ -1,33 +1,33 @@
 using Godot;
 using System;
 
-public partial class Cherry : RigidBody2D
+public partial class Strawberry : RigidBody2D
 {
     [Export]
-    private PackedScene Strawberry;
+    private PackedScene Grape;
 
-    public string FruitType = "Cherry";
+    public string FruitType = "Strawberry";
 
     public void _on_body_entered(Node2D body)
     {
         // Make sure that both frutis are of the same type and havent been messed with yet
-        if (body is Cherry otherCherry && otherCherry.FruitType == this.FruitType)
+        if (body is Strawberry otherStrawberry && otherStrawberry.FruitType == this.FruitType)
         {
             // Defer the transformation
-            CallDeferred(nameof(TransformToStrawberry), otherCherry);
+            CallDeferred(nameof(TransformToGrape), otherStrawberry);
         }
     }
 
-    private void TransformToStrawberry(Cherry otherCherry)
+    private void TransformToGrape(Strawberry otherStrawberry)
     {
         // Ensure we are not creating multiple strawberries
-        if (this.IsQueuedForDeletion() || otherCherry.IsQueuedForDeletion())
+        if (this.IsQueuedForDeletion() || otherStrawberry.IsQueuedForDeletion())
         {
             return;
-        } 
-           
+        }
+
         // Create a new Strawberry instance
-        var newFruit = Strawberry.Instantiate<RigidBody2D>();
+        var newFruit = Grape.Instantiate<RigidBody2D>();
         newFruit.GlobalPosition = this.GlobalPosition;
 
         // Add the new Strawberry to the parent node
@@ -35,6 +35,6 @@ public partial class Cherry : RigidBody2D
 
         // Remove both the current and collided Cherry fruits
         this.QueueFree();
-        otherCherry.QueueFree();
+        otherStrawberry.QueueFree();
     }
 }

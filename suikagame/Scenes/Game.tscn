@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_klut6"]
 [ext_resource type="PackedScene" uid="uid://b12dd5pxu1nki" path="res://Scenes/Cherry.tscn" id="4_cxxe4"]
 [ext_resource type="PackedScene" uid="uid://car53skni4gs8" path="res://Scenes/Strawberry.tscn" id="4_ms1t6"]
-[ext_resource type="PackedScene" uid="uid://dk023c5vsdumf" path="res://Scenes/Grapes.tscn" id="5_ptm48"]
+[ext_resource type="PackedScene" uid="uid://dk023c5vsdumf" path="res://Scenes/Grape.tscn" id="5_ptm48"]
 [ext_resource type="PackedScene" uid="uid://dh5jd17sedwfv" path="res://Scenes/Dekopon.tscn" id="6_fxymd"]
 [ext_resource type="PackedScene" uid="uid://cysbprfv7bauy" path="res://Scenes/Persimmon.tscn" id="7_f1twh"]
 [ext_resource type="PackedScene" uid="uid://dbgcn8ihslddh" path="res://Scenes/Apple.tscn" id="8_2qqfi"]
@@ -31,7 +31,7 @@ corner_radius = 0.0
 fill_color = Color(0, 0.583826, 0.584612, 1)
 
 [node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("FruitParent")]
-position = Vector2(369, 76)
+position = Vector2(350, 64)
 scale = Vector2(2.005, 2.005)
 script = ExtResource("1_4sy4k")
 Cherry = ExtResource("4_cxxe4")
@@ -48,7 +48,7 @@ TitularWatermelon = ExtResource("13_2xwvr")
 FruitParent = NodePath("../Fruit Parent")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Player"]
-position = Vector2(2.99252, -0.997506)
+position = Vector2(0.997528, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/StaticBody2D"]
 shape = SubResource("CircleShape2D_4xq1i")

@@ -63,6 +63,10 @@ public partial class Player : Node2D
             Node2D cherry = Cherry.Instantiate<Node2D>();
             FruitParent.AddChild(cherry);
             cherry.GlobalPosition = this.GlobalPosition;
+
+            //Node2D strawberry = Strawberry.Instantiate<Node2D>();
+            //FruitParent.AddChild(strawberry);
+            //strawberry.GlobalPosition = this.GlobalPosition;
         }
 
     }

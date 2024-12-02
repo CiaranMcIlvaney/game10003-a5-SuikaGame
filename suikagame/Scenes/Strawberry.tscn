@@ -1,17 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://car53skni4gs8"]
+[gd_scene load_steps=5 format=3 uid="uid://car53skni4gs8"]
 
+[ext_resource type="Script" path="res://Scripts/Strawberry.cs" id="1_dg8j2"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_erh36"]
+[ext_resource type="PackedScene" uid="uid://dk023c5vsdumf" path="res://Scenes/Grape.tscn" id="2_nf2co"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8h32y"]
 
 [node name="Strawberry" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_dg8j2")
+Grape = ExtResource("2_nf2co")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.975, 1.975)
 shape = SubResource("CircleShape2D_8h32y")
 
 [node name="Ellipse" type="Node2D" parent="."]
 scale = Vector2(2, 2)
 script = ExtResource("1_erh36")
 size = Vector2(20, 20)
-fill_color = Color(0.811765, 0, 0, 1)
+fill_color = Color(1, 0.411765, 0.317647, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
