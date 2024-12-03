@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk023c5vsdumf"]
+[gd_scene load_steps=5 format=3 uid="uid://dk023c5vsdumf"]
 
+[ext_resource type="Script" path="res://Scripts/Grape.cs" id="1_2oy8v"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_rc0kc"]
+[ext_resource type="PackedScene" uid="uid://dh5jd17sedwfv" path="res://Scenes/Dekopon.tscn" id="2_oluah"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ppev"]
 
 [node name="Grape" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_2oy8v")
+Dekopon = ExtResource("2_oluah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2.75, 2.75)
@@ -15,3 +21,5 @@ scale = Vector2(2.75, 2.75)
 script = ExtResource("1_rc0kc")
 size = Vector2(20, 20)
 fill_color = Color(0.635294, 0.415686, 1, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -5,6 +5,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_kefh6"]
 
 [node name="TitularWatermelon" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(9, 9)
@@ -15,3 +17,5 @@ scale = Vector2(9, 9)
 script = ExtResource("1_podfc")
 size = Vector2(20, 20)
 fill_color = Color(0.141176, 0.643137, 0.0352941, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dof41n26gg1t4"]
+[gd_scene load_steps=5 format=3 uid="uid://dof41n26gg1t4"]
 
+[ext_resource type="Script" path="res://Scripts/Peach.cs" id="1_gpadt"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_vrpbo"]
+[ext_resource type="PackedScene" uid="uid://hlj5xf1nou62" path="res://Scenes/Pineapple.tscn" id="2_nq6ct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5j301"]
 
 [node name="Peach" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_gpadt")
+Pineapple = ExtResource("2_nq6ct")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(7.25, 7.25)
@@ -15,3 +21,5 @@ scale = Vector2(7.25, 7.25)
 script = ExtResource("1_vrpbo")
 size = Vector2(20, 20)
 fill_color = Color(1, 0.784314, 0.764706, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

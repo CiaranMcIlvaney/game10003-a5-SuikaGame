@@ -20,20 +20,20 @@ public partial class Strawberry : RigidBody2D
 
     private void TransformToGrape(Strawberry otherStrawberry)
     {
-        // Ensure we are not creating multiple strawberries
+        // Ensure there are not creating two of the same fruit when collided
         if (this.IsQueuedForDeletion() || otherStrawberry.IsQueuedForDeletion())
         {
             return;
         }
 
-        // Create a new Strawberry instance
+        // Create a new fruit instance
         var newFruit = Grape.Instantiate<RigidBody2D>();
         newFruit.GlobalPosition = this.GlobalPosition;
 
-        // Add the new Strawberry to the parent node
+        // Add the new fruit to the parent node
         this.GetParent().AddChild(newFruit);
 
-        // Remove both the current and collided Cherry fruits
+        // Remove both the current and collided same fruits
         this.QueueFree();
         otherStrawberry.QueueFree();
     }

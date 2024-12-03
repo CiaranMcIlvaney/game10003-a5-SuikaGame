@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://hlj5xf1nou62"]
+[gd_scene load_steps=5 format=3 uid="uid://hlj5xf1nou62"]
 
+[ext_resource type="Script" path="res://Scripts/Pineapple.cs" id="1_u50hi"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_x136y"]
+[ext_resource type="PackedScene" uid="uid://b2nj6cinntn8b" path="res://Scenes/Melon.tscn" id="2_jbsds"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htyqa"]
 
 [node name="Pineapple" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_u50hi")
+Melon = ExtResource("2_jbsds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(8, 8)
@@ -15,3 +21,5 @@ scale = Vector2(8, 8)
 script = ExtResource("1_x136y")
 size = Vector2(20, 20)
 fill_color = Color(0.956863, 0.921569, 0.0235294, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbgcn8ihslddh"]
+[gd_scene load_steps=5 format=3 uid="uid://dbgcn8ihslddh"]
 
+[ext_resource type="Script" path="res://Scripts/Apple.cs" id="1_lqm6f"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_mxg2l"]
+[ext_resource type="PackedScene" uid="uid://b7eq1es65by2k" path="res://Scenes/Pear.tscn" id="2_ellod"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y6bxq"]
 
 [node name="Apple" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_lqm6f")
+Pear = ExtResource("2_ellod")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(6, 6)
@@ -15,3 +21,5 @@ scale = Vector2(6, 6)
 script = ExtResource("1_mxg2l")
 size = Vector2(20, 20)
 fill_color = Color(0.960784, 0.0823529, 0.0823529, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

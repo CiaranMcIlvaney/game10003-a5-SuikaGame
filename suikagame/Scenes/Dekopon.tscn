@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh5jd17sedwfv"]
+[gd_scene load_steps=5 format=3 uid="uid://dh5jd17sedwfv"]
 
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_2ey1x"]
+[ext_resource type="Script" path="res://Scripts/Dekopon.cs" id="1_8vurc"]
+[ext_resource type="PackedScene" uid="uid://cysbprfv7bauy" path="res://Scenes/Persimmon.tscn" id="2_jh3sn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr1f2"]
 
 [node name="Dekopon" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_8vurc")
+Persimmon = ExtResource("2_jh3sn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3.5, 3.5)
@@ -15,3 +21,5 @@ scale = Vector2(3.5, 3.5)
 script = ExtResource("1_2ey1x")
 size = Vector2(20, 20)
 fill_color = Color(1, 0.709804, 0, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

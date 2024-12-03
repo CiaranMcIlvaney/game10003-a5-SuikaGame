@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvhn24u23xlbd"]
+[gd_scene load_steps=13 format=3 uid="uid://cvhn24u23xlbd"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_4sy4k"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="2_jji5e"]
@@ -8,17 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://dk023c5vsdumf" path="res://Scenes/Grape.tscn" id="5_ptm48"]
 [ext_resource type="PackedScene" uid="uid://dh5jd17sedwfv" path="res://Scenes/Dekopon.tscn" id="6_fxymd"]
 [ext_resource type="PackedScene" uid="uid://cysbprfv7bauy" path="res://Scenes/Persimmon.tscn" id="7_f1twh"]
-[ext_resource type="PackedScene" uid="uid://dbgcn8ihslddh" path="res://Scenes/Apple.tscn" id="8_2qqfi"]
-[ext_resource type="PackedScene" uid="uid://b7eq1es65by2k" path="res://Scenes/Pear.tscn" id="9_b5p8o"]
-[ext_resource type="PackedScene" uid="uid://dof41n26gg1t4" path="res://Scenes/Peach.tscn" id="10_pp7xj"]
-[ext_resource type="PackedScene" uid="uid://hlj5xf1nou62" path="res://Scenes/Pineapple.tscn" id="11_7k2ql"]
-[ext_resource type="PackedScene" uid="uid://b2nj6cinntn8b" path="res://Scenes/Melon.tscn" id="12_tmxpq"]
-[ext_resource type="PackedScene" uid="uid://hn7khjl8lvr5" path="res://Scenes/TitularWatermelon.tscn" id="13_2xwvr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4xq1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfpf1"]
 size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8cji"]
+size = Vector2(27.0293, 155.36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csidt"]
 
 [node name="Game" type="Node2D"]
 
@@ -39,12 +38,6 @@ Strawberry = ExtResource("4_ms1t6")
 Grape = ExtResource("5_ptm48")
 Dekopon = ExtResource("6_fxymd")
 Persimmon = ExtResource("7_f1twh")
-Apple = ExtResource("8_2qqfi")
-Pear = ExtResource("9_b5p8o")
-Peach = ExtResource("10_pp7xj")
-Pineapple = ExtResource("11_7k2ql")
-Melon = ExtResource("12_tmxpq")
-TitularWatermelon = ExtResource("13_2xwvr")
 FruitParent = NodePath("../Fruit Parent")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Player"]
@@ -54,7 +47,7 @@ position = Vector2(0.997528, 0)
 shape = SubResource("CircleShape2D_4xq1i")
 metadata/_edit_lock_ = true
 
-[node name="Ellipse" type="Node2D" parent="Player/StaticBody2D"]
+[node name="Ellipse" type="Node2D" parent="Player/StaticBody2D/CollisionShape2D"]
 script = ExtResource("2_jji5e")
 size = Vector2(20, 20)
 metadata/_edit_lock_ = true
@@ -107,4 +100,54 @@ script = ExtResource("3_klut6")
 corner_radius = 0.0
 fill_color = Color(0.255659, 0.255659, 0.255659, 1)
 
+[node name="Stopper Left" type="StaticBody2D" parent="Bowl"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bowl/Stopper Left"]
+position = Vector2(284, 88)
+rotation = 2.89725
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_k8cji")
+
+[node name="Stopper Right" type="StaticBody2D" parent="Bowl"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bowl/Stopper Right"]
+position = Vector2(872, 88)
+rotation = -2.89725
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_k8cji")
+
 [node name="Fruit Parent" type="Node2D" parent="."]
+
+[node name="Fruits Used" type="Node2D" parent="."]
+
+[node name="Current Fruit" type="StaticBody2D" parent="Fruits Used"]
+position = Vector2(150, 197)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fruits Used/Current Fruit"]
+position = Vector2(-2, 43)
+scale = Vector2(6.645, 6.645)
+shape = SubResource("RectangleShape2D_csidt")
+
+[node name="Rectangle" type="Node2D" parent="Fruits Used/Current Fruit"]
+position = Vector2(-2, 43)
+scale = Vector2(6.645, 6.645)
+script = ExtResource("3_klut6")
+size = Vector2(20, 20)
+corner_radius = 0.0
+fill_color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="Next Fruit" type="StaticBody2D" parent="Fruits Used/Current Fruit"]
+position = Vector2(1, 175)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fruits Used/Current Fruit/Next Fruit"]
+position = Vector2(-2, 43)
+scale = Vector2(6.645, 6.645)
+shape = SubResource("RectangleShape2D_csidt")
+
+[node name="Rectangle" type="Node2D" parent="Fruits Used/Current Fruit/Next Fruit"]
+position = Vector2(-2, 43)
+scale = Vector2(6.645, 6.645)
+script = ExtResource("3_klut6")
+size = Vector2(20, 20)
+corner_radius = 0.0
+fill_color = Color(0.344076, 0.344076, 0.344076, 1)

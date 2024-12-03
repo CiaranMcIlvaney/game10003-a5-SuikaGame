@@ -10,6 +10,7 @@ public partial class Player : Node2D
     private float timer = 0f; 
     private float timeLimit = 2.5f;
 
+    // Gaining acess to all the scenes
     [Export]
     private PackedScene Cherry;
     [Export]
@@ -20,28 +21,18 @@ public partial class Player : Node2D
     private PackedScene Dekopon;
     [Export]
     private PackedScene Persimmon;
-    [Export]
-    private PackedScene Apple;
-    [Export]
-    private PackedScene Pear;
-    [Export]
-    private PackedScene Peach;
-    [Export]
-    private PackedScene Pineapple;
-    [Export]
-    private PackedScene Melon;
-    [Export]
-    private PackedScene TitularWatermelon;
 
+    // Parent manager for the fruit
     [Export]
     private Node2D FruitParent;
+   
+    // Randomizer for fruit dropping
+    private RandomNumberGenerator randomFruitPicker = new RandomNumberGenerator();
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
-
-	}
-
+    {
+       
+    }
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
@@ -59,44 +50,56 @@ public partial class Player : Node2D
         }
 
         if (Input.IsActionJustPressed("drop"))
-        {
-            Node2D cherry = Cherry.Instantiate<Node2D>();
-            FruitParent.AddChild(cherry);
-            cherry.GlobalPosition = this.GlobalPosition;
-
-            //Node2D strawberry = Strawberry.Instantiate<Node2D>();
-            //FruitParent.AddChild(strawberry);
-            //strawberry.GlobalPosition = this.GlobalPosition;
+        { 
+            randomFruitPicker.Randomize();
+            RandomCalledFunction();
         }
 
     }
+
+    // Function to randomly pick from the allowed fruits you can drop
+    private void RandomCalledFunction()
+    {
+        Action[] fruitManager = { SpawnCherry, SpawnStrawberry, SpawnGrape, SpawnDekopon, SpawnPersimmon };
+
+        // Select a random index
+        int randomPicker = randomFruitPicker.RandiRange(0, fruitManager.Length - 1);
+
+        // Call the randomly selected function
+        fruitManager[randomPicker]();
+    }
+
+    // Functions for randomize calling of fruits you are allowed to spawn in 
+    private void SpawnCherry()
+    {
+        Node2D cherry = Cherry.Instantiate<Node2D>();
+        FruitParent.AddChild(cherry);
+        cherry.GlobalPosition = this.GlobalPosition;
+    }
+
+    private void SpawnStrawberry()
+    {
+        Node2D strawberry = Strawberry.Instantiate<Node2D>();
+        FruitParent.AddChild(strawberry);
+        strawberry.GlobalPosition = this.GlobalPosition;
+    }
+    private void SpawnGrape()
+    {
+        Node2D grape = Grape.Instantiate<Node2D>();
+        FruitParent.AddChild(grape);
+        grape.GlobalPosition = this.GlobalPosition;
+    }
+    private void SpawnDekopon()
+    {
+        Node2D dekopon = Dekopon.Instantiate<Node2D>();
+        FruitParent.AddChild(dekopon);
+        dekopon.GlobalPosition = this.GlobalPosition;
+    }
+    private void SpawnPersimmon()
+    {
+        Node2D persimmonn = Persimmon.Instantiate<Node2D>();
+        FruitParent.AddChild(persimmonn);
+        persimmonn.GlobalPosition = this.GlobalPosition;
+    }
 }
-            //Node2D strawberry = Strawberry.Instantiate<Node2D>();
-            //this.AddChild(strawberry);
-
-            //Node2D grape = Grape.Instantiate<Node2D>();
-            //this.AddChild(grape);
-
-            //Node2D dekopon = Dekopon.Instantiate<Node2D>();
-            //this.AddChild(dekopon);
-
-            //Node2D persimmon = Persimmon.Instantiate<Node2D>();
-            //this.AddChild(persimmon);
-
-            //Node2D apple = Apple.Instantiate<Node2D>();
-            //this.AddChild(apple);
-
-            //Node2D pear = Pear.Instantiate<Node2D>();
-            //this.AddChild(pear);
-
-            //Node2D peach = Peach.Instantiate<Node2D>();
-            //this.AddChild(peach);
-
-            //Node2D pineapple = Pineapple.Instantiate<Node2D>();
-            //this.AddChild(pineapple);
-
-            //Node2D melon = Melon.Instantiate<Node2D>();
-            //this.AddChild(melon);
-
-            //Node2D titularWatermelon = TitularWatermelon.Instantiate<Node2D>();
-            //this.AddChild(titularWatermelon);
+            

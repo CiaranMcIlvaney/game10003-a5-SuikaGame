@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7eq1es65by2k"]
+[gd_scene load_steps=5 format=3 uid="uid://b7eq1es65by2k"]
 
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_0b10i"]
+[ext_resource type="Script" path="res://Scripts/Pear.cs" id="1_3r0x1"]
+[ext_resource type="PackedScene" uid="uid://dof41n26gg1t4" path="res://Scenes/Peach.tscn" id="2_7bs24"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_auhjl"]
 
 [node name="Pear" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_3r0x1")
+Peach = ExtResource("2_7bs24")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(6.75, 6.75)
@@ -15,3 +21,5 @@ scale = Vector2(6.75, 6.75)
 script = ExtResource("1_0b10i")
 size = Vector2(20, 20)
 fill_color = Color(0.988235, 0.945098, 0.490196, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
