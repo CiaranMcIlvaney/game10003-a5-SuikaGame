@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b12dd5pxu1nki"]
 
-[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_jemob"]
 [ext_resource type="Script" path="res://Scripts/Cherry.cs" id="1_x3qjg"]
 [ext_resource type="PackedScene" uid="uid://car53skni4gs8" path="res://Scenes/Strawberry.tscn" id="2_20kh6"]
+[ext_resource type="Texture2D" uid="uid://dgi7vw4okbagk" path="res://Assets/Cherry.png" id="4_vx7ye"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5hohb"]
 
@@ -17,10 +17,12 @@ Strawberry = ExtResource("2_20kh6")
 scale = Vector2(1.365, 1.365)
 shape = SubResource("CircleShape2D_5hohb")
 
-[node name="Ellipse" type="Node2D" parent="."]
-scale = Vector2(1.33, 1.33)
-script = ExtResource("1_jemob")
-size = Vector2(20, 20)
-fill_color = Color(0.937255, 0.027451, 0.0392157, 1)
+[node name="CherryImage" type="TextureRect" parent="."]
+offset_left = -47.0
+offset_top = -48.0
+offset_right = 203.0
+offset_bottom = 202.0
+scale = Vector2(0.360995, 0.360995)
+texture = ExtResource("4_vx7ye")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

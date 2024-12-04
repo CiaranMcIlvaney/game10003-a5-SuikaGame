@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dh5jd17sedwfv"]
 
-[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_2ey1x"]
 [ext_resource type="Script" path="res://Scripts/Dekopon.cs" id="1_8vurc"]
 [ext_resource type="PackedScene" uid="uid://cysbprfv7bauy" path="res://Scenes/Persimmon.tscn" id="2_jh3sn"]
+[ext_resource type="Texture2D" uid="uid://khi2q10ypi46" path="res://Assets/Dekopon.png" id="3_uec2y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr1f2"]
 
@@ -16,10 +16,12 @@ Persimmon = ExtResource("2_jh3sn")
 scale = Vector2(3.5, 3.5)
 shape = SubResource("CircleShape2D_dr1f2")
 
-[node name="Ellipse" type="Node2D" parent="."]
-scale = Vector2(3.5, 3.5)
-script = ExtResource("1_2ey1x")
-size = Vector2(20, 20)
-fill_color = Color(1, 0.709804, 0, 1)
+[node name="DekoponImage" type="TextureRect" parent="."]
+offset_left = -101.0
+offset_top = -104.0
+offset_right = 149.0
+offset_bottom = 146.0
+scale = Vector2(0.808191, 0.808191)
+texture = ExtResource("3_uec2y")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

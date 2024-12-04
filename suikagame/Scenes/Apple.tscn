@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbgcn8ihslddh"]
 
 [ext_resource type="Script" path="res://Scripts/Apple.cs" id="1_lqm6f"]
-[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_mxg2l"]
 [ext_resource type="PackedScene" uid="uid://b7eq1es65by2k" path="res://Scenes/Pear.tscn" id="2_ellod"]
+[ext_resource type="Texture2D" uid="uid://bgvshvxa85flm" path="res://Assets/Apple.png" id="3_eqf8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y6bxq"]
 
@@ -16,10 +16,12 @@ Pear = ExtResource("2_ellod")
 scale = Vector2(6, 6)
 shape = SubResource("CircleShape2D_y6bxq")
 
-[node name="Ellipse" type="Node2D" parent="."]
-scale = Vector2(6, 6)
-script = ExtResource("1_mxg2l")
-size = Vector2(20, 20)
-fill_color = Color(0.960784, 0.0823529, 0.0823529, 1)
+[node name="AppleImage" type="TextureRect" parent="."]
+offset_left = -158.0
+offset_top = -156.0
+offset_right = 92.0
+offset_bottom = 94.0
+scale = Vector2(1.28, 1.28)
+texture = ExtResource("3_eqf8l")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

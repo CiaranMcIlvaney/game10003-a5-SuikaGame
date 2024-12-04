@@ -1,13 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvhn24u23xlbd"]
+[gd_scene load_steps=20 format=3 uid="uid://cvhn24u23xlbd"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_4sy4k"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="2_jji5e"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_klut6"]
 [ext_resource type="PackedScene" uid="uid://b12dd5pxu1nki" path="res://Scenes/Cherry.tscn" id="4_cxxe4"]
+[ext_resource type="Script" path="res://Scripts/FruitManager.cs" id="4_dsqsl"]
 [ext_resource type="PackedScene" uid="uid://car53skni4gs8" path="res://Scenes/Strawberry.tscn" id="4_ms1t6"]
 [ext_resource type="PackedScene" uid="uid://dk023c5vsdumf" path="res://Scenes/Grape.tscn" id="5_ptm48"]
 [ext_resource type="PackedScene" uid="uid://dh5jd17sedwfv" path="res://Scenes/Dekopon.tscn" id="6_fxymd"]
 [ext_resource type="PackedScene" uid="uid://cysbprfv7bauy" path="res://Scenes/Persimmon.tscn" id="7_f1twh"]
+[ext_resource type="Texture2D" uid="uid://dsu0ndsm5nqop" path="res://Assets/Strawberry.png" id="9_wdxeg"]
+[ext_resource type="Script" path="res://Scripts/UI.cs" id="10_k1f70"]
+[ext_resource type="Texture2D" uid="uid://dgi7vw4okbagk" path="res://Assets/Cherry.png" id="10_w1ta5"]
+[ext_resource type="Texture2D" uid="uid://cfev6ojyo1n4d" path="res://Assets/Grape.png" id="11_mpvs0"]
+[ext_resource type="Texture2D" uid="uid://khi2q10ypi46" path="res://Assets/Dekopon.png" id="12_w0svj"]
+[ext_resource type="Texture2D" uid="uid://do3a5abn1hgaf" path="res://Assets/Persimmon.png" id="13_eycn2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4xq1i"]
 
@@ -29,16 +36,11 @@ size = Vector2(1151.85, 648.619)
 corner_radius = 0.0
 fill_color = Color(0, 0.583826, 0.584612, 1)
 
-[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("FruitParent")]
+[node name="Player" type="Node2D" parent="."]
 position = Vector2(350, 64)
 scale = Vector2(2.005, 2.005)
 script = ExtResource("1_4sy4k")
-Cherry = ExtResource("4_cxxe4")
-Strawberry = ExtResource("4_ms1t6")
-Grape = ExtResource("5_ptm48")
-Dekopon = ExtResource("6_fxymd")
-Persimmon = ExtResource("7_f1twh")
-FruitParent = NodePath("../Fruit Parent")
+FruitManagerPath = NodePath("../Fruit Manager")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Player"]
 position = Vector2(0.997528, 0)
@@ -105,7 +107,6 @@ fill_color = Color(0.255659, 0.255659, 0.255659, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bowl/Stopper Left"]
 position = Vector2(284, 88)
 rotation = 2.89725
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_k8cji")
 
 [node name="Stopper Right" type="StaticBody2D" parent="Bowl"]
@@ -113,10 +114,7 @@ shape = SubResource("RectangleShape2D_k8cji")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bowl/Stopper Right"]
 position = Vector2(872, 88)
 rotation = -2.89725
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_k8cji")
-
-[node name="Fruit Parent" type="Node2D" parent="."]
 
 [node name="Fruits Used" type="Node2D" parent="."]
 
@@ -151,3 +149,144 @@ script = ExtResource("3_klut6")
 size = Vector2(20, 20)
 corner_radius = 0.0
 fill_color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="Fruit Manager" type="Node2D" parent="." node_paths=PackedStringArray("Fruit_Manager")]
+script = ExtResource("4_dsqsl")
+Cherry = ExtResource("4_cxxe4")
+Strawberry = ExtResource("4_ms1t6")
+Grape = ExtResource("5_ptm48")
+Dekopon = ExtResource("6_fxymd")
+Persimmon = ExtResource("7_f1twh")
+Fruit_Manager = NodePath(".")
+UIPath = NodePath("../UI")
+
+[node name="UI" type="Node2D" parent="." node_paths=PackedStringArray("CherryImageCurrent", "StrawberryImageCurrent", "GrapeImageCurrent", "DekoponImageCurrent", "PersimmonImageCurrent", "CherryImageNext", "StrawberryImageNext", "GrapeImageNext", "DekoponImageNext", "PersimmonImageNext")]
+position = Vector2(351, 73)
+scale = Vector2(2.005, 2.005)
+script = ExtResource("10_k1f70")
+CherryImageCurrent = NodePath("CurrentFruitImage/CherryImageCurrent")
+StrawberryImageCurrent = NodePath("CurrentFruitImage/StrawberryImageCurrent")
+GrapeImageCurrent = NodePath("CurrentFruitImage/GrapeImageCurrent")
+DekoponImageCurrent = NodePath("CurrentFruitImage/DekoponImageCurrent")
+PersimmonImageCurrent = NodePath("CurrentFruitImage/PersimmonImageCurrent")
+CherryImageNext = NodePath("NextFruitImage/CherryImageNext")
+StrawberryImageNext = NodePath("NextFruitImage/StrawberryImageNext")
+GrapeImageNext = NodePath("NextFruitImage/GrapeImageNext")
+DekoponImageNext = NodePath("NextFruitImage/DekoponImageNext")
+PersimmonImageNext = NodePath("NextFruitImage/PersimmonImageNext")
+
+[node name="CurrentFruitImage" type="TextureRect" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CherryImageCurrent" type="TextureRect" parent="UI/CurrentFruitImage"]
+layout_mode = 0
+offset_left = -178.055
+offset_top = 6.98254
+offset_right = 71.9451
+offset_bottom = 256.983
+scale = Vector2(0.600997, 0.600997)
+texture = ExtResource("10_w1ta5")
+
+[node name="StrawberryImageCurrent" type="TextureRect" parent="UI/CurrentFruitImage"]
+layout_mode = 0
+offset_left = -166.085
+offset_top = 10.9726
+offset_right = 83.9154
+offset_bottom = 260.972
+scale = Vector2(0.541147, 0.541147)
+texture = ExtResource("9_wdxeg")
+
+[node name="GrapeImageCurrent" type="TextureRect" parent="UI/CurrentFruitImage"]
+layout_mode = 0
+offset_left = -161.097
+offset_top = 22.4439
+offset_right = 88.9026
+offset_bottom = 272.443
+scale = Vector2(0.501247, 0.501247)
+texture = ExtResource("11_mpvs0")
+
+[node name="DekoponImageCurrent" type="TextureRect" parent="UI/CurrentFruitImage"]
+layout_mode = 0
+offset_left = -174.564
+offset_top = 6.98254
+offset_right = 75.4362
+offset_bottom = 256.982
+scale = Vector2(0.615066, 0.615066)
+texture = ExtResource("12_w0svj")
+
+[node name="PersimmonImageCurrent" type="TextureRect" parent="UI/CurrentFruitImage"]
+layout_mode = 0
+offset_left = -177.057
+offset_top = 8.4788
+offset_right = 72.9429
+offset_bottom = 258.479
+scale = Vector2(0.608567, 0.608567)
+texture = ExtResource("13_eycn2")
+
+[node name="NextFruitImage" type="TextureRect" parent="UI"]
+offset_left = -0.498753
+offset_top = -5.48628
+offset_right = 39.5012
+offset_bottom = 34.5137
+
+[node name="CherryImageNext" type="TextureRect" parent="UI/NextFruitImage"]
+layout_mode = 0
+offset_left = -175.561
+offset_top = 97.2569
+offset_right = 74.4389
+offset_bottom = 347.257
+scale = Vector2(0.600997, 0.600997)
+texture = ExtResource("10_w1ta5")
+
+[node name="StrawberryImageNext" type="TextureRect" parent="UI/NextFruitImage"]
+layout_mode = 0
+offset_left = -165.087
+offset_top = 104.239
+offset_right = 84.9128
+offset_bottom = 354.239
+scale = Vector2(0.541147, 0.541147)
+texture = ExtResource("9_wdxeg")
+
+[node name="GrapeImageNext" type="TextureRect" parent="UI/NextFruitImage"]
+layout_mode = 0
+offset_left = -160.1
+offset_top = 114.214
+offset_right = 89.9003
+offset_bottom = 364.214
+scale = Vector2(0.501247, 0.501247)
+texture = ExtResource("11_mpvs0")
+
+[node name="DekoponImageNext" type="TextureRect" parent="UI/NextFruitImage"]
+layout_mode = 0
+offset_left = -176.06
+offset_top = 100.249
+offset_right = 73.9402
+offset_bottom = 350.249
+scale = Vector2(0.615066, 0.615066)
+texture = ExtResource("12_w0svj")
+
+[node name="PersimmonImageNext" type="TextureRect" parent="UI/NextFruitImage"]
+layout_mode = 0
+offset_left = -175.062
+offset_top = 100.249
+offset_right = 74.9377
+offset_bottom = 350.249
+scale = Vector2(0.608567, 0.608567)
+texture = ExtResource("13_eycn2")
+
+[node name="CurrentFruit" type="Label" parent="UI"]
+offset_left = -141.646
+offset_top = 116.209
+offset_right = -39.646
+offset_bottom = 139.209
+scale = Vector2(0.860349, 0.860349)
+text = "Current Fruit"
+
+[node name="NextFruit" type="Label" parent="UI"]
+offset_left = -131.172
+offset_top = 211.97
+offset_right = -51.1721
+offset_bottom = 234.97
+scale = Vector2(0.860349, 0.860349)
+text = "Next Fruit"

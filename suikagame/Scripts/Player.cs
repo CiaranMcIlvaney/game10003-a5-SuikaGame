@@ -1,105 +1,57 @@
 using Godot;
 using System;
 using System.Runtime.CompilerServices;
-
+using System.Transactions;
 public partial class Player : Node2D
 {
-    // Setting up variables
+    // Setting up movement variables
     private float speed = 200f;
-    private float direction = 1f; 
-    private float timer = 0f; 
+    private float direction = 1f;
+    private float timer = 0f;
     private float timeLimit = 2.5f;
+    private float lastPressed = -1f;
+    private float cooldown = 1f;
 
-    // Gaining acess to all the scenes
+    // Calling fruit manager Node2D to do the fruit dropping
     [Export]
-    private PackedScene Cherry;
-    [Export]
-    private PackedScene Strawberry;
-    [Export]
-    private PackedScene Grape;
-    [Export]
-    private PackedScene Dekopon;
-    [Export]
-    private PackedScene Persimmon;
-
-    // Parent manager for the fruit
-    [Export]
-    private Node2D FruitParent;
-   
-    // Randomizer for fruit dropping
-    private RandomNumberGenerator randomFruitPicker = new RandomNumberGenerator();
+    private NodePath FruitManagerPath;
+    private FruitManager fruitManager;
 
     public override void _Ready()
     {
-       
+        // Refernce to FruitManager 
+        fruitManager = GetNode<FruitManager>(FruitManagerPath);
     }
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
+
     public override void _Process(double delta)
     {
-        // Ball movement
+        // Move the player back and forth based on speed and direction
         Translate(new Vector2(speed * direction * (float)delta, 0));
 
-        // Update the timer
+        // Update the timer to track time passed
         timer += (float)delta;
 
-        // Reverse direction when the timer exceeds the time limit
+        // If the timer is reached, reverse the players movement
         if (timer >= timeLimit)
         {
-            direction *= -1; // Reverse direction
-            timer = 0f; // Reset the timer
+            // Reverse the direction
+            direction *= -1; 
+
+            // Reset the timer
+            timer = 0f;
         }
 
+        // Check for drop input
         if (Input.IsActionJustPressed("drop"))
-        { 
-            randomFruitPicker.Randomize();
-            RandomCalledFunction();
+        {
+            float currentTime = Time.GetTicksMsec() / 1000f;
+            if (currentTime - lastPressed >= cooldown)
+            {
+                // Call the DropFruit method inside of the FruitManager with the players current position
+                fruitManager.DropFruit(this.GlobalPosition);
+                lastPressed = currentTime;
+            }
+           
         }
-
-    }
-
-    // Function to randomly pick from the allowed fruits you can drop
-    private void RandomCalledFunction()
-    {
-        Action[] fruitManager = { SpawnCherry, SpawnStrawberry, SpawnGrape, SpawnDekopon, SpawnPersimmon };
-
-        // Select a random index
-        int randomPicker = randomFruitPicker.RandiRange(0, fruitManager.Length - 1);
-
-        // Call the randomly selected function
-        fruitManager[randomPicker]();
-    }
-
-    // Functions for randomize calling of fruits you are allowed to spawn in 
-    private void SpawnCherry()
-    {
-        Node2D cherry = Cherry.Instantiate<Node2D>();
-        FruitParent.AddChild(cherry);
-        cherry.GlobalPosition = this.GlobalPosition;
-    }
-
-    private void SpawnStrawberry()
-    {
-        Node2D strawberry = Strawberry.Instantiate<Node2D>();
-        FruitParent.AddChild(strawberry);
-        strawberry.GlobalPosition = this.GlobalPosition;
-    }
-    private void SpawnGrape()
-    {
-        Node2D grape = Grape.Instantiate<Node2D>();
-        FruitParent.AddChild(grape);
-        grape.GlobalPosition = this.GlobalPosition;
-    }
-    private void SpawnDekopon()
-    {
-        Node2D dekopon = Dekopon.Instantiate<Node2D>();
-        FruitParent.AddChild(dekopon);
-        dekopon.GlobalPosition = this.GlobalPosition;
-    }
-    private void SpawnPersimmon()
-    {
-        Node2D persimmonn = Persimmon.Instantiate<Node2D>();
-        FruitParent.AddChild(persimmonn);
-        persimmonn.GlobalPosition = this.GlobalPosition;
     }
 }
-            

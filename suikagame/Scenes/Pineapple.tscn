@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://hlj5xf1nou62"]
 
 [ext_resource type="Script" path="res://Scripts/Pineapple.cs" id="1_u50hi"]
-[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_x136y"]
 [ext_resource type="PackedScene" uid="uid://b2nj6cinntn8b" path="res://Scenes/Melon.tscn" id="2_jbsds"]
+[ext_resource type="Texture2D" uid="uid://bs0bufqsaq4mf" path="res://Assets/Pineapple.png" id="3_kwvck"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htyqa"]
 
@@ -16,10 +16,12 @@ Melon = ExtResource("2_jbsds")
 scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_htyqa")
 
-[node name="Ellipse" type="Node2D" parent="."]
-scale = Vector2(8, 8)
-script = ExtResource("1_x136y")
-size = Vector2(20, 20)
-fill_color = Color(0.956863, 0.921569, 0.0235294, 1)
+[node name="PineappleImage" type="TextureRect" parent="."]
+offset_left = -239.0
+offset_top = -249.0
+offset_right = 11.0
+offset_bottom = 1.0
+scale = Vector2(1.92, 1.92)
+texture = ExtResource("3_kwvck")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
