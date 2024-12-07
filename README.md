@@ -1,1 +1,1 @@
-# game10003-a5-SuikaGame
+This is a suika game recreation where instead of moving around yourself and planting them, the dropper is constamtly moving. You can drop your frutis each second. The goal is to merge your fruit until you get a watermelon. Pressing spacebar will drop the fruit you have displayed on the left. As well as showing you what fruit is next afterwards.
